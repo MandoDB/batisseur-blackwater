@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bâtisseur de Blackwater</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="img/LogoBatisseur.png" alt="Logo">
+        </div>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Notre Equipe</a></li>
+                <li><a href="#">Nous Contacter</a></li>
+                <li><a href="#">Notre Production</a></li>
+                <li><a href="#">Notre Histoire</a></li>
+            </ul>
+            <div class="separatorUnderNavBar">
+                <img src="img/bgRip.png" alt="">
+            </div>
+    </div>
+
+    <div class="contNumberOfTickets">
+        <div class="numberOfTickets">
+            <p>Nombre de Planche Réalisé :</p>
+            <div id="numberOfTickets"></div>
+        </div>
+
+    <script>
+        $(document).ready(function() {
+            var url = 'https://script.googleusercontent.com/macros/echo?user_content_key=C6jKlrtiNKJ8v4PKWDscflY3b7AcrylRBp4r0Oxfnt4s48ClRXBrfUqQPZRlhCeo1Al7s31ta69dl1YQzcnTWoihboI6e9O4m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJqaQDpzgUltTnN4v4jEXYOg9eHLNGp66GoUC9N9WdxmFP5GfjuhXnJ_7YKj-lMR6nzWvVdA1_K1XvsxveHaHQhHmfr2XeV08g&lib=M3Uj5ssaIYDnqlBUCojPQ5Urp_-DKydDu';
+
+            // Afficher les chiffres aléatoires pendant 3 secondes
+            var interval = setInterval(function() {
+                var randomValue = Math.floor(Math.random() * 999); // Générer un nombre aléatoire entre 0 et 9
+                $('#numberOfTickets').text(randomValue);
+            }, 100); // Changer toutes les 100 millisecondes
+
+            // Après 3 secondes, charger la vraie valeur
+            setTimeout(function() {
+                clearInterval(interval); // Arrêter la génération aléatoire
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    success: function(data) {
+                        $('#numberOfTickets').text(data);
+                    },
+                    error: function(error) {
+                        console.error('Error loading data:', error);
+                        $('#numberOfTickets').text('Error loading data. See console for details.');
+                    }
+                });
+            }, 5000); // Charger la vraie valeur après 3 secondes
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- AKfycbxw-5GWwWBuyPGXLCrWLalORU1gbeLOVPIgnN89f-tJB60KVB4bV9Tv72sNAxnlVag -->
